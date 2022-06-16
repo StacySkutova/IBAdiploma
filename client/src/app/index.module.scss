@@ -1,0 +1,12 @@
+.App__suspenseLoader {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  margin: auto;
+  background-color: #1B1E21;
+  z-index: 10;
+}

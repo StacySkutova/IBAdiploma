@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap");
+
+.Header__wrapper {
+  width: 100%;
+  min-height: rem(67px);
+}
+
+.Header__container {
+  z-index: 1;
+  width: 100%;
+  background-color: #25292d;
+  position: fixed;
+  display: flex;
+
+}
+
+.Header__logoLink {
+  width: 100%;
+  padding-left: rem(70px);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: "MonteCarlo", cursive, sans-serif;
+  font-size: 2.5rem;
+  color: white;
+
+  span:first-child {
+    margin-left: rem(11px);
+    color: lightgoldenrodyellow;
+    font-size: 1rem;
+  }
+
+  span:last-child {
+    margin-left: rem(5px);
+    color: lightgreen;
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.Header__userWrapper {
+  width: 40%;
+  margin: rem(8px);
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: center;
+}
+
+.Header__signOutButton {
+  width: rem(90px);
+  height: rem(30px);
+  cursor: pointer;
+  font-family: $main-font;
+  color: black;
+  background-color: #ffd200;
+  border: 1px solid #ffd200;
+  border-radius: 4px;
+}
+
+.Header__authRequested {
+  color: white;
+}
+
+button.Header__burger {
+  @media screen and (min-width: 750px) {
+    display: none;
+  }
+}

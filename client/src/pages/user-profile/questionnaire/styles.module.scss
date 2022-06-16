@@ -1,0 +1,42 @@
+.Questionnaire__wrapper {
+  width: 100%;
+}
+
+.Questionnaire__root {
+  height: 100%;
+  padding: 0 rem(30px);
+  background-color: #1b1e21;
+  font-family: $main-font;
+  font-size: rem(36px);
+
+  span {
+    font-size: rem(28px);
+    font-weight: 500;
+    color: lightgreen;
+  }
+
+  span:first-child {
+    font-size: rem(22px);
+    color: white;
+  }
+
+  input {
+    width: rem(20px);
+    height: rem(20px);
+    margin-bottom: rem(20px);
+  }
+
+  input:last-child {
+    width: rem(100px);
+    height: rem(40px);
+    margin-top: rem(30px);
+    cursor: pointer;
+    font-family: $main-font;
+    font-weight: 600;
+    font-size: rem(18px);
+    color: black;
+    background-color: #ffd200;
+    border: 1px solid #ffd200;
+    border-radius: 4px;
+  }
+}

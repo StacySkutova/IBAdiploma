@@ -1,0 +1,70 @@
+.AdminNavbar__wrapper {
+  max-width: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: rem(16px);
+  background: #2d2d2f;
+  font-family: $main-font;
+}
+
+.AdminNavbar__container {
+  position: fixed;
+  width: 18%;
+
+  @media (max-width: $breakpoint-md) {
+    align-items: center;
+    width: 15%;
+  }
+}
+
+.AdminNavbar__linkItem {
+  color: #d8d8d8;
+  height: rem(48px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-left: rem(17px);
+  border-radius: rem(4px);
+  font-weight: 400;
+  text-decoration: none;
+
+  @media (max-width: $breakpoint-lg) {
+    padding-left: rem(14px);
+    height: rem(40px);
+    font-size: rem(12px);
+    font-weight: 300;
+  }
+
+  @media (max-width: $breakpoint-md) {
+
+  }
+}
+
+.AdminNavbar__activeLinkItem {
+  @extend .AdminNavbar__linkItem;
+  color: #ffd200;
+  background: #3c3c3d;
+  font-weight: 600;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: rem(12px);
+    font-weight: 500;
+  }
+}
+
+.AdminNavbar__linkText {
+  margin-left: rem(16px);
+  letter-spacing: 0.01em;
+  font-size: rem(15px);
+  text-align: center;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: rem(12px);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: rem(10px);
+  }
+}

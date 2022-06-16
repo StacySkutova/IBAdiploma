@@ -1,0 +1,151 @@
+.ResetPasswordForm__pageWrapper {
+  position: relative;
+  width: rem(456px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+
+  @media (max-width: $breakpoint-sm) {
+    width: 90%;
+  }
+}
+
+.ResetPasswordForm__content {
+  width: 80%;
+  padding: rem(56px) 0;
+}
+
+.ResetPasswordForm__greatingPhrase {
+  margin-bottom: rem(32px);
+  text-align: center;
+  font-family: $main-font;
+  font-weight: 600;
+  font-size: rem(34px);
+  color: #3a3a3a;
+
+  @media (max-width: $breakpoint-sm) {
+    font-weight: 500;
+    font-size: rem(28px);
+  }
+}
+
+.ResetPasswordForm__inputLabel {
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(13px);
+  color: #595959;
+}
+
+.ResetPasswordForm__inputField {
+  width: 100%;
+  height: rem(40px);
+  display: flex;
+  margin: rem(8px) 0 rem(16px) 0;
+  padding: rem(10px) rem(36px) rem(10px) rem(12px);
+  background-color: #ffffff;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(15px);
+  color: #1a1a1a;
+}
+
+.ResetPasswordForm__passwordDataContainer {
+  position: relative;
+}
+
+.ResetPasswordForm__iconSHowHidePassword {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translate(-50%, -50%);
+}
+
+.ResetPasswordForm__passwordField {
+  width: 90%;
+  background-color: #ffffff;
+  border: none;
+  color: #1a1a1a;
+
+  &:focus {
+    border: none;
+  }
+}
+
+.ResetPasswordForm__linkBack {
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(15px);
+  color: #1a1a1a;
+}
+
+.ResetPasswordForm__submitButton {
+  width: 100%;
+  height: rem(40px);
+  background-color: #ffd200;
+  border: none;
+  border-radius: 4px;
+  margin: 0 0 rem(32px) 0;
+  padding: rem(8px) rem(24px);
+  text-align: center;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(17px);
+  color: #1a1a1a;
+
+  &:disabled {
+    background-color: #ffe966;
+    color: #949494;
+    cursor: not-allowed;
+  }
+}
+
+.ResetPasswordForm__warningBlock {
+  display: flex;
+  padding: rem(10px) rem(12px);
+  background-color: #ffede6;
+  border-radius: 4px;
+  margin-top: rem(16px);
+  margin-bottom: rem(16px);
+
+  &_general {
+    display: none;
+  }
+}
+
+.ResetPasswordForm__warningMessage {
+  padding-left: rem(8px);
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(15px);
+  color: #1a1a1a;
+}
+
+.ResetPasswordForm__requirements {
+  margin-bottom: rem(32px);
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(13px);
+  color: #595959;
+}
+
+.ResetPasswordForm__infoBlock {
+  display: flex;
+  padding: rem(10px) rem(12px);
+  background-color: #F5FDEB;
+  border-radius: 4px;
+  margin: rem(32px) 0;
+}
+
+.ResetPasswordForm__infoMessage {
+  width: 90%;
+  padding-left: rem(8px);
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(15px);
+  color: #1a1a1a;
+}

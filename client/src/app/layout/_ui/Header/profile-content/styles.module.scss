@@ -1,0 +1,111 @@
+.ProfileContent__container {
+  display: flex;
+  gap: rem(10px);
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ProfileContent__authUserInfo {
+  display: flex;
+  align-items: center;
+}
+
+.ProfileContent__userName {
+  display: flex;
+  margin-right: rem(10px);
+  text-align: center;
+}
+
+.ProfileContent__userGreating {
+  display: flex;
+  align-items: center;
+  padding-left: rem(25px);
+  justify-content: center;
+  margin-right: rem(12px);
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(14px);
+  color: #f2f2f2;
+
+  @media (max-width: 450px) {
+    display: none;
+  }
+}
+
+.ProfileContent__userAvatar {
+  width: rem(32px);
+  height: rem(32px);
+  background-color: white;
+  border-radius: 50%;
+}
+
+.ProfileContent__dropDownMenu {
+  width: rem(150px);
+  height: rem(100px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid black;
+  background-color: #2d2d2f;
+  border-radius: 4px;
+  position: absolute;
+  top: 100%;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(14px);
+  color: white;
+}
+
+.ProfileContent__buttons {
+  background-color: #2d2d2f;
+  border: none;
+}
+
+.ProfileContent__languagesWrapper {
+  position: relative;
+}
+
+.ProfileContent__languages {
+  padding-bottom: 0;
+  z-index: 1;
+}
+
+.ProfileContent__languages button {
+  border: #25292d;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(14px) !important;
+  color: #f2f2f2;
+
+  &:after {
+    border: 0;
+  }
+
+  &[aria-expanded='true']:after,
+  :after {
+    border: 0;
+  }
+}
+
+.ProfileContent__languages ul {
+  background-color: #4b4b4c;
+  border: #4b4b4c;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(14px) !important;
+  color: #f2f2f2;
+}
+
+.ProfileContent__languages li:hover {
+  color: black;
+}
+
+.ProfileContent__languagesListDropdownIcon {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: 0;
+  z-index: 0;
+}

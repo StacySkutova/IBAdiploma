@@ -1,0 +1,5 @@
+{
+  "error_isEmpty": "Errors during sign in procedure",
+  "error_noSuchUser": "No such user exists",
+  "error_incorrectPassword": "Password has been entered incorrectly"
+}

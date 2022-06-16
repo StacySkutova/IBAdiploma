@@ -1,0 +1,78 @@
+.NotFound__pageWrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  height: 100%;
+  margin: auto 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #1b1e21;
+  font-weight: 700;
+  font-family: $main-font;
+  color: #ffffff;
+}
+
+.NotFound__errorCode {
+  margin-bottom: rem(30px);
+  font-size: rem(180px);
+}
+
+.NotFound__errorDescription {
+  margin-bottom: rem(33px);
+  font-size: rem(40px);
+}
+
+.NotFound__message {
+  width: 35%;
+  margin-bottom: rem(32px);
+  text-align: center;
+  font-weight: 400;
+  font-size: rem(24px);
+  color: #d8d8d8;
+
+  @media (max-width: $breakpoint-md) {
+    width: 80%;
+    font-size: rem(20px);
+  }
+}
+
+.NotFound__buttonsBlock {
+  display: flex;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.NotFound__linkBack {
+  width: rem(82px);
+  height: rem(40px);
+  text-decoration: none;
+  text-align: center;
+  margin-right: rem(24px);
+  background-color: #373d43;
+  border-radius: 4px;
+  padding: rem(8px) rem(24px);
+  font-weight: 400;
+  font-size: rem(17px);
+  color: #ffffff;
+
+  @media (max-width: $breakpoint-md) {
+    margin-right: 0;
+    margin-bottom: rem(20px);
+  }
+}
+
+.NotFound__linkHome {
+  width: rem(180px);
+  height: rem(40px);
+  text-decoration: none;
+  text-align: center;
+  background-color: #ffd200;
+  border-radius: 4px;
+  padding: rem(8px) rem(24px);
+  font-weight: 400;
+  font-size: rem(17px);
+  color: #1a1a1a;
+}

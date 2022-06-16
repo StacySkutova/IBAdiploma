@@ -1,0 +1,13 @@
+.Layout__wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #25292d;
+}
+
+.Layout__inner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}

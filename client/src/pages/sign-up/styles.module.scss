@@ -1,0 +1,16 @@
+.SignUp__pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-evenly;
+  background-image: url(../../shared/jpgs/MainPageCover.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+}

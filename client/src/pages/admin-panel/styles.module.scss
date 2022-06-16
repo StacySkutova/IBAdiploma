@@ -1,0 +1,11 @@
+.UserProfilePage__pageWrapper {
+  display: flex;
+  height: 100%;
+  flex-grow: 1;
+  background: #1b1e21;
+  color: white;
+
+  @media screen and (max-width: 900px) {
+    padding: rem(10px) rem(24px);
+  }
+}

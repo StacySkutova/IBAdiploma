@@ -1,0 +1,172 @@
+import { ReactElement, useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import cn from 'classnames';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { IconButton } from '@mui/material';
+import axios from 'axios';
+// import { useTranslation } from 'react-i18next';
+
+import { selectAuthUserInfo } from 'app/store/authReducer';
+import { getUserDataAsync } from 'app/store/userReducer';
+import {
+  PasswordNonVisibilityEyeSVG,
+  PasswordVisibilityEyeSVG,
+  WarningIconSVG,
+} from 'shared/svgs';
+
+import styles from './styles.module.scss';
+
+export default function ModalUserProfile({ modalActive, setModalActive }): ReactElement {
+  const dispatch = useDispatch();
+
+  const authUserInfo = useSelector((selectAuthUserInfo));
+
+  const [isPasswordValueShown, setIsPasswordValueShown] = useState(false);
+  const [img, setImg] = useState(null);
+  const [avatarUpload, setAvatarUpload] = useState(null);
+
+  const sendFile = useCallback(async () => {
+    try {
+      const data = new FormData();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      data.append('avatar', img);
+      await axios.post('http://localhost:5000/upload-avatar', data)
+        .then(res => {
+          // dispatch(setAuthUserInfo({ avatar: res.data } ))
+          setAvatarUpload(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [img]);
+
+  // const { t } = useTranslation();
+
+  const validationsSchema = yup.object().shape({
+    userName: yup.string().required('Не может быть пустым!'),
+    email: yup.string().email('Введите корректный e-mail').required('Не может быть пустым!'),
+    password: yup.string(),
+  });
+
+  return (
+    <div
+      className={cn([styles.ModalUserProfile__wrapper,
+        { [styles.ModalUserProfile__wrapperActiveStatus]: modalActive === true }])}
+      onClick={() => setModalActive(false)}>
+      <div className={styles.ModalUserProfile__content}
+           onClick={(e) => e.stopPropagation()}>
+        <div className={styles.ModalUserProfile__greatingPhrase}>Edit profile</div>
+        <div className={styles.ModalUserProfile__inputsBlock}>
+          <div className={styles.ModalUserProfile__avatarBlock}>
+            <div>
+              {avatarUpload ?
+                <img className={styles.ModalUserProfile__avatarUpload} src={`${avatarUpload}`} alt='avatar' /> :
+                <div className={styles.ModalUserProfile__avatar}>{authUserInfo.userName[0]}</div>
+              }
+            </div>
+            <div className={styles.ModalUserProfile__avatarInputsBlock}>
+              <input type='file' onChange={e => {
+                if (!e.target.files) return;
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                setImg(e.target.files[0]);
+              }} />
+              <button type='button' onClick={sendFile}>Изменить</button>
+            </div>
+          </div>
+          <Formik
+            initialValues={{
+              userName: authUserInfo.userName,
+              email: authUserInfo.email,
+              password: '',
+            }}
+            validateOnBlur
+            onSubmit={({ userName, email, password }): void => {
+              dispatch(getUserDataAsync({ userName, email, password }));
+            }}
+            validationSchema={validationsSchema}
+          >
+            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (<>
+                <label htmlFor='user-name' className={styles.ModalUserProfile__inputLabel}>
+                  Имя пользователя
+                  <input
+                    className={styles.ModalUserProfile__inputField}
+                    type='text'
+                    name='userName'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.userName}
+                  />
+                </label>
+                {touched.userName && errors.userName && (
+                  <div className={styles.ModalUserProfile__warningBlock}>
+                    <WarningIconSVG />
+                    <div className={styles.ModalUserProfile__warningMessage}>{errors.userName}</div>
+                  </div>
+                )}
+                <label htmlFor='email' className={styles.ModalUserProfile__inputLabel}>
+                  E-mail пользователя
+                  <input
+                    className={styles.ModalUserProfile__inputField}
+                    type='text'
+                    name='email'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                  />
+                </label>
+                {touched.email && errors.email && (
+                  <div className={styles.ModalUserProfile__warningBlock}>
+                    <WarningIconSVG />
+                    <div className={styles.ModalUserProfile__warningMessage}>{errors.email}</div>
+                  </div>
+                )}
+                <label htmlFor='password' className={styles.ModalUserProfile__inputLabel}>
+                  Пароль
+                  <div className={styles.ModalUserProfile__passwordDataContainer}>
+                    <input
+                      className={styles.ModalUserProfile__inputField}
+                      type={isPasswordValueShown ? 'text' : 'password'}
+                      name='password'
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password}
+                    />
+                    <div className={styles.ModalUserProfile__iconSHowHidePassword}>
+                      <IconButton onClick={(): void => {
+                        setIsPasswordValueShown(!isPasswordValueShown);
+                      }}>
+                        {isPasswordValueShown ? (
+                          <PasswordNonVisibilityEyeSVG />
+                        ) : (
+                          <PasswordVisibilityEyeSVG />
+                        )}
+                      </IconButton>
+                    </div>
+                  </div>
+                </label>
+                {touched.password && errors.password && (
+                  <div className={styles.ModalUserProfile__warningBlock}>
+                    <WarningIconSVG />
+                    <div className={styles.ModalUserProfile__warningMessage}>{errors.password}</div>
+                  </div>
+                )}
+                <button
+                  className={styles.ModalUserProfile__submitButton}
+                  name='generalValidation'
+                  onClick={() => handleSubmit()}
+                  disabled={!isValid || !dirty}
+                  type='submit'
+                >
+                  Обновить данные
+                </button>
+              </>
+            )}
+          </Formik>
+        </div>
+      </div>
+    </div>
+  );
+}

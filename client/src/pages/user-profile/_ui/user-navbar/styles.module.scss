@@ -1,0 +1,94 @@
+.Navbar__wrapper {
+  max-width: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: rem(16px);
+  background: #2d2d2f;
+  font-family: $main-font;
+}
+
+.Navbar__container {
+  position: fixed;
+  width: 18%;
+
+  @media (max-width: $breakpoint-md) {
+    align-items: center;
+    width: 15%;
+  }
+}
+
+.Navbar__linkItem {
+  color: #d8d8d8;
+  height: rem(48px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-left: rem(17px);
+  border-radius: rem(4px);
+  font-weight: 400;
+  text-decoration: none;
+
+  @media (max-width: $breakpoint-lg) {
+    padding-left: rem(14px);
+    height: rem(40px);
+    font-size: rem(12px);
+    font-weight: 300;
+  }
+
+  @media (max-width: $breakpoint-md) {
+
+  }
+}
+
+.Navbar__activeLinkItem {
+  @extend .Navbar__linkItem;
+  color: #ffd200;
+  background: #3c3c3d;
+  font-weight: 600;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: rem(12px);
+    font-weight: 500;
+  }
+}
+
+.Navbar__linkText {
+  margin-left: rem(16px);
+  letter-spacing: 0.01em;
+  font-size: rem(15px);
+  text-align: center;
+
+  @media (max-width: $breakpoint-lg) {
+    font-size: rem(12px);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    font-size: rem(10px);
+  }
+}
+
+.Navbar__questionnaireButton {
+  position: absolute;
+  top: 200%;
+  left: 15%;
+  height: rem(48px);
+  cursor: pointer;
+  text-decoration: none;
+  padding: rem(12px) rem(50px);
+  font-family: $main-font;
+  color: black;
+  background-color: #ffd200;
+  border: 1px solid #ffd200;
+  border-radius: 4px;
+
+  @media (max-width: $breakpoint-lg) {
+    left: 5%;
+    padding: rem(12px) rem(35px);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    padding: rem(12px) rem(10px);
+  }
+}

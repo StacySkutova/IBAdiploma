@@ -1,0 +1,82 @@
+.MealPlans__wrapper {
+  width: 100%;
+  height: 100%;
+  margin: rem(30px);
+  text-align: justify;
+  font-family: $main-font;
+  font-size: rem(20px);
+}
+
+.MealPlans__mealNumber {
+  text-align: center;
+
+  span {
+    font-size: rem(28px);
+    font-weight: 600;
+    color: lightgreen;
+  }
+}
+
+.MealPlans__menuPerDayTable {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: rem(30px) auto;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: rem(5px);
+}
+
+.MealPlans__row {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid white;
+}
+
+.MealPlans__row:last-child {
+  border-bottom: none;
+}
+
+.MealPlans__firstColumn,
+.MealPlans__secondColumn,
+.MealPlans__thirdColumn,
+.MealPlans__forthColumn,
+.MealPlans__fifthColumn,
+.MealPlans__sixthColumn,
+.MealPlans__seventhColumn,
+.MealPlans__eighthColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.MealPlans__firstColumn {
+  width: 30%;
+  text-align: center;
+  justify-content: center;
+  font-weight: 600;
+  color: lightgoldenrodyellow;
+}
+
+.MealPlans__secondColumn,
+.MealPlans__thirdColumn,
+.MealPlans__forthColumn,
+.MealPlans__fifthColumn,
+.MealPlans__sixthColumn,
+.MealPlans__seventhColumn,
+.MealPlans__eighthColumn {
+  width: 20%;
+}
+
+.MealPlans__secondColumnTitle,
+.MealPlans__secondColumnMealName,
+.MealPlans__secondColumnMealCalorie, {
+  justify-content: center;
+  padding: rem(5px) rem(10px);
+}
+
+.MealPlans__secondColumnTitle {
+  text-align: center;
+  border-bottom: 1px solid white;
+  font-weight: 600;
+  color: lightgreen;
+}

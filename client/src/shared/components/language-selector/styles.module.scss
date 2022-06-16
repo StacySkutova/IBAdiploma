@@ -1,0 +1,44 @@
+.LanguageSelector__languagesWrapper {
+  width: rem(70px);
+  position: absolute;
+  top: rem(10px);
+  right: rem(10px);
+  color: black;
+}
+
+.LanguageSelector__languages {
+  padding-bottom: 0;
+  z-index: 1;
+}
+
+.LanguageSelector__languages button {
+  border: #25292d;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(14px) !important;
+
+  &:after {
+    border: 0;
+  }
+
+  &[aria-expanded='true']:after,
+  :after {
+    border: 0;
+  }
+}
+
+.LanguageSelector__languages ul {
+  background-color: floralwhite;
+  border: #4b4b4c;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: rem(14px) !important;
+}
+
+.LanguageSelector__languagesListDropdownIcon {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: 0;
+  z-index: 0;
+}
