@@ -1,8 +1,7 @@
 .NotFound__pageWrapper {
+  height: 100vh;
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
-  height: 100%;
   margin: auto 0;
   align-items: center;
   justify-content: center;
@@ -46,7 +45,7 @@
 }
 
 .NotFound__linkBack {
-  width: rem(82px);
+  width: rem(100px);
   height: rem(40px);
   text-decoration: none;
   text-align: center;

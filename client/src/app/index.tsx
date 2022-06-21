@@ -2,7 +2,6 @@ import { ReactElement, Suspense } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import Layout from 'app/layout';
 import Pages from 'pages';
@@ -14,7 +13,7 @@ import styles from './index.module.scss';
 function App(): ReactElement {
   return (
     <Layout>
-      <ToastContainer position='top-right' />
+      <ToastContainer position="top-right" />
       <Suspense
         fallback={
           <div className={styles.App__suspenseLoader}>

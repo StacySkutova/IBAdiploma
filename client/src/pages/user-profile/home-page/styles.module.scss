@@ -13,9 +13,30 @@
   font-size: rem(50px);
 }
 
+
+.HomePage__logo {
+  margin: 0 rem(10px);
+  align-items: center;
+  font-family: "MonteCarlo", cursive, sans-serif;
+  font-size: 4rem;
+  color: white;
+
+  span:first-child {
+    margin-left: rem(11px);
+    color: lightgoldenrodyellow;
+    font-size: 2rem;
+  }
+
+  span:last-child {
+    margin-left: rem(5px);
+    color: lightgreen;
+    font-size: 3rem;
+  }
+}
+
 .HomePage__textBlock {
   margin: 0 auto;
-  width: 95%;
+  width: 90%;
   text-align: justify;
 }
 

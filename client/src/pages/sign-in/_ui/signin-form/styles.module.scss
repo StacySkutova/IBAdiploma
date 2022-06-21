@@ -67,6 +67,7 @@
 .SignInForm__linkBlock {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: rem(15px);
 }
 
 .SignInForm__linkForgotPassword,
@@ -82,6 +83,12 @@
   margin: auto rem(10px);
   font-size: rem(13px);
   color: #595959;
+}
+
+.SignInForm__contactAdmin {
+  font-size: rem(15px);
+  font-weight: 500;
+  color: #1a1a1a;
 }
 
 .SignInForm__submitButton {

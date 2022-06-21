@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
 
@@ -116,4 +116,4 @@ export const Plan = new Schema({
   },
 });
 
-export default model('Plan', Plan);
+export default model("Plan", Plan);

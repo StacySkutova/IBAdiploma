@@ -9,7 +9,8 @@ import { useTranslation } from 'react-i18next';
 import {
   authByBackend,
   selectIsSignInFormLoading,
-  selectSignInFormError, setSignInFormError,
+  selectSignInFormError,
+  setSignInFormError,
 } from 'app/store/authReducer';
 import AllRoutes from 'shared/config/routes';
 import { WarningIconSVG, PasswordVisibilityEyeSVG, PasswordNonVisibilityEyeSVG } from 'shared/svgs';
@@ -56,12 +57,12 @@ export default function SignInForm(): ReactElement {
             <div className={styles.SignInForm__greatingPhrase}>
               {t('title_signIn')} <LanguageSelector />
             </div>
-            <label htmlFor='user-name' className={styles.SignInForm__inputLabel}>
+            <label htmlFor="user-name" className={styles.SignInForm__inputLabel}>
               {t('user_input_label')}
               <input
                 className={styles.SignInForm__inputField}
-                type='text'
-                name='userName'
+                type="text"
+                name="userName"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.userName}
@@ -73,21 +74,23 @@ export default function SignInForm(): ReactElement {
                 <div className={styles.SignInForm__warningMessage}>{errors.userName}</div>
               </div>
             )}
-            <label htmlFor='password' className={styles.SignInForm__inputLabel}>
+            <label htmlFor="password" className={styles.SignInForm__inputLabel}>
               {t('password_input_label')}
               <div className={styles.SignInForm__passwordDataContainer}>
                 <input
                   className={styles.SignInForm__inputField}
                   type={isPasswordValueShown ? 'text' : 'password'}
-                  name='password'
+                  name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
                 />
                 <div className={styles.SignInForm__iconSHowHidePassword}>
-                  <IconButton onClick={(): void => {
-                    setIsPasswordValueShown(!isPasswordValueShown);
-                  }}>
+                  <IconButton
+                    onClick={(): void => {
+                      setIsPasswordValueShown(!isPasswordValueShown);
+                    }}
+                  >
                     {isPasswordValueShown ? (
                       <PasswordNonVisibilityEyeSVG />
                     ) : (
@@ -104,13 +107,19 @@ export default function SignInForm(): ReactElement {
               </div>
             )}
             <div className={styles.SignInForm__linkBlock}>
-              <Link to={AllRoutes.FORGOT_PASSWORD} className={styles.SignInForm__linkForgotPassword}>
+              <Link
+                to={AllRoutes.FORGOT_PASSWORD}
+                className={styles.SignInForm__linkForgotPassword}
+              >
                 {t('title_link_forgot_password')}
               </Link>
               <Link to={AllRoutes.SIGN_UP} className={styles.SignInForm__linkSigUp}>
                 {t('link_button_registration')}
               </Link>
             </div>
+            <a href="mailto:admin@gmail.com" className={styles.SignInForm__contactAdmin}>
+              Связаться с администратором
+            </a>
             {signInFormError !== null && (
               <div className={styles.SignInForm__warningBlock}>
                 <WarningIconSVG />
@@ -121,10 +130,10 @@ export default function SignInForm(): ReactElement {
             )}
             <button
               className={styles.SignInForm__submitButton}
-              name='generalValidation'
+              name="generalValidation"
               onClick={() => handleSubmit()}
               disabled={!isValid || !dirty}
-              type='submit'
+              type="submit"
             >
               {t('enter_button')}
             </button>

@@ -12,6 +12,7 @@
 
 .UsersList__userRow {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   padding: rem(20px) 0;

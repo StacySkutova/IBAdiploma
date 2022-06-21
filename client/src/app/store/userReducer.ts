@@ -8,6 +8,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     userData: {},
+    usersList: [],
     isUserDataLoading: false,
     isUserDataSuccess: false,
     userDataError: null,
@@ -15,6 +16,9 @@ export const userSlice = createSlice({
   reducers: {
     setUserData: (state, action) => {
       state.userData = action.payload;
+    },
+    setUsersList: (state, action) => {
+      state.usersList = action.payload;
     },
     setIsUserDataLoading: (state, action) => {
       state.isUserDataLoading = action.payload;
@@ -28,9 +32,15 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUserData, setIsUserDataLoading, setIsUserDataSuccess, setUserDataError } = userSlice.actions;
+export const {
+  setUserData,
+  setUsersList,
+  setIsUserDataLoading,
+  setIsUserDataSuccess,
+  setUserDataError,
+} = userSlice.actions;
 
-export const getUserDataAsync = function({ userName, email, password }) {
+export const getUserDataAsync = function ({ userName, email, password }) {
   return async (dispatch) => {
     dispatch(setIsUserDataLoading(true));
     const payloadData = { userName, email, password };
@@ -45,12 +55,12 @@ export const getUserDataAsync = function({ userName, email, password }) {
   };
 };
 
-export const getUserDataAsyncFromBackend = function(userName) {
+export const getUserDataAsyncFromBackend = function (userName) {
   return async (dispatch) => {
     try {
       const response = await axios.get(`http://localhost:5000/user-find/${userName}`);
-      dispatch(setUserData(
-        {
+      dispatch(
+        setUserData({
           userName: response.data.userName,
           workoutType: response.data.plan.workoutType,
           perWeekWorkoutNumber: response.data.plan.perWeekWorkoutNumber,
@@ -107,8 +117,35 @@ export const getUserDataAsyncFromBackend = function(userName) {
           sundaySecondMealCalories: response.data.plan.menu.sunday.secondMeal.calories,
           sundayThirdMealName: response.data.plan.menu.sunday.thirdMeal.name,
           sundayThirdMealCalories: response.data.plan.menu.sunday.thirdMeal.calories,
-        },
-      ));
+        })
+      );
+    } catch (err) {
+      toast.error('User data failed');
+    }
+  };
+};
+
+export const getAllUserDataAsyncFromBackend = function () {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get('http://localhost:5000/user-find');
+      console.log(response);
+      dispatch(setUsersList(response.data));
+      console.log(response.data);
+      toast.success('User data success');
+    } catch (err) {
+      toast.error('User data failed');
+    }
+  };
+};
+
+export const deleteUserOnBackend = function (userName) {
+  return async () => {
+    try {
+      console.log(userName);
+      const response = await axios.delete(`http://localhost:5000/user-delete/${userName}`);
+      console.log(response);
+      toast.success('User data success');
     } catch (err) {
       toast.error('User data failed');
     }
@@ -116,6 +153,7 @@ export const getUserDataAsyncFromBackend = function(userName) {
 };
 
 export const selectUserData = (state): any => state.user.userData;
+export const selectUsersList = (state): any => state.user.usersList;
 export const selectIsUserDataLoading = (state): boolean => state.user.isUserDataLoading;
 export const selectIsUserDataSuccess = (state): boolean => state.user.isUserDataSuccess;
 export const selectUserDataError = (state): boolean => state.user.userDataError;
