@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { selectAuthUserInfo } from 'app/store/authReducer';
 import workoutJPG from 'shared/jpgs/WorkoutInfo.jpg';
 import mealInfoJPG from 'shared/jpgs/MealInfo.jpg';
-import PlanJPG from 'shared/jpgs/Plan.jpg';
+import PlanInfoJPG from 'shared/jpgs/PlanInfo.jpg';
 import AllRoutes from 'shared/config/routes';
 
 import styles from './styles.module.scss';
@@ -99,7 +99,7 @@ export default function HomePage(): ReactElement {
             </Link>
             отобрзятся у Вас в сооветствующих папках слева в авигацинной панели.
           </div>
-          <img src={PlanJPG} className={styles.HomePage__questionnaireImg} alt="Plan" />
+          <img src={PlanInfoJPG} className={styles.HomePage__questionnaireImg} alt="Plan" />
         </div>
         <div className={styles.HomePage__lastWords}>
           Мы очень надемся что Вы останетесь довольны данным приложением, будете им пользоваться

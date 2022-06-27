@@ -2,9 +2,9 @@ import { lazy, ReactElement } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { selectAuthUserInfo, selectIsAuthenticated } from 'app/store/authReducer';
 import AllRoutes from 'shared/config/routes';
 import AuthRoute from './_ui/AuthRoute/index';
-import { selectAuthUserInfo, selectIsAuthenticated } from '../app/store/authReducer';
 
 const SignIn = lazy(() => import('pages/sign-in'));
 const SignUp = lazy(() => import('pages/sign-up'));
@@ -16,7 +16,7 @@ const NotFound = lazy(() => import('pages/404'));
 
 function Pages(): ReactElement {
   const isAuthenticated = useSelector(selectIsAuthenticated);
-  const authUserInfo = useSelector((selectAuthUserInfo));
+  const authUserInfo = useSelector(selectAuthUserInfo);
 
   return (
     <Routes>
@@ -40,22 +40,27 @@ function Pages(): ReactElement {
         path={AllRoutes.NOT_FOUND}
         element={
           <AuthRoute>
-            <NotFound />
+            <Route path="*" element={<Navigate to={AllRoutes.NOT_FOUND} replace />} />
+            <Route path={AllRoutes.NOT_FOUND} element={<NotFound />} />
           </AuthRoute>
         }
       />
-      <Route path={AllRoutes.HOME} element={<Navigate to={AllRoutes.SIGN_IN} replace />} />
+      <Route path={AllRoutes.HOME} element={<Navigate to={AllRoutes.SIGN_IN} />} />
       <Route path={AllRoutes.SIGN_UP} element={<SignUp />} />
       <Route path={AllRoutes.FORGOT_PASSWORD} element={<ForgotPassword />} />
       <Route path={AllRoutes.RESET_PASSWORD} element={<ResetPassword />} />
-      {/* <Route path='*' element={<Navigate to={AllRoutes.SIGN_IN} replace />} /> */}
-      <Route path='*' element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
       {/* eslint-disable-next-line no-nested-ternary */}
-      {isAuthenticated && authUserInfo.role !== 'admin' ? (<Route path={AllRoutes.SIGN_IN}
-                                                                  element={<Navigate to='/user-profile/home-page'
-                                                                                     replace />} />) : isAuthenticated && authUserInfo.role === 'admin' ? (
-        <Route path={AllRoutes.SIGN_IN} element={<Navigate to='/admin-panel' replace />} />) : (
-        <Route path={AllRoutes.SIGN_IN} element={<SignIn />} />)}
+      {isAuthenticated && authUserInfo.role !== 'admin' ? (
+        <Route
+          path={AllRoutes.SIGN_IN}
+          element={<Navigate to={AllRoutes.USER_PROFILE_HOMEPAGE} replace />}
+        />
+      ) : isAuthenticated && authUserInfo.role === 'admin' ? (
+        <Route path={AllRoutes.SIGN_IN} element={<Navigate to="/admin-panel" replace />} />
+      ) : (
+        <Route path={AllRoutes.SIGN_IN} element={<SignIn />} />
+      )}
     </Routes>
   );
 }

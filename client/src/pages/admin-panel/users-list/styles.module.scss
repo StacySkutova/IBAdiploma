@@ -10,6 +10,21 @@
   font-size: rem(20px);
 }
 
+.UsersList__tableHeader {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: rem(-10px);
+  font-family: $main-font;
+  font-weight: 500;
+  font-size: rem(20px);
+  color: lightgreen;
+}
+
+.UsersList__tableHeaderName {
+  padding-left: rem(20px);
+}
+
 .UsersList__userRow {
   display: flex;
   justify-content: space-between;
@@ -21,6 +36,7 @@
 .UsersList__userColumn {
   width: 20%;
   padding-left: rem(20px);
+  list-style-type: none;
 }
 
 .UsersList__userButtonsBlock {
@@ -48,6 +64,7 @@
 }
 
 .UsersList__buttonAdd {
-  width: 30%;
+  width: 15%;
+  height: rem(60px);
   margin-top: rem(40px);
 }

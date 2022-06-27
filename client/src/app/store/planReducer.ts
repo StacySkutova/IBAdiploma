@@ -65,7 +65,6 @@ export const getAllPlansDataAsyncFromBackend = function () {
       console.log(response);
       dispatch(setPlansList(response.data));
       console.log(response.data);
-      toast.success('Plan data success');
     } catch (err) {
       toast.error('Plan data failed');
     }

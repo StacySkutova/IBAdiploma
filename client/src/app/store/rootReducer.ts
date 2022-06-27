@@ -1,10 +1,10 @@
 import authReducer from './authReducer';
-import planReducer from './planReducer';
 import userReducer from './userReducer';
+import planReducer from './planReducer';
 
 const rootReducer = {
-  user: userReducer,
   auth: authReducer,
+  user: userReducer,
   plan: planReducer,
 };
 

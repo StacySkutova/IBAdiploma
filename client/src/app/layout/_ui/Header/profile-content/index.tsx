@@ -10,9 +10,10 @@ import {
   signOutByBackend,
 } from 'app/store/authReducer';
 import LanguagesListDropdownIconSVG from 'shared/svgs/LanguagesListDropdownIconSVG';
-import ModalUserProfile from './_ui/modal-user-profile';
 
 import styles from './styles.module.scss';
+import ModalUserAvatar from './_ui/modal-user-avatar';
+import ModalUserProfile from './_ui/modal-user-profile';
 
 function ProfileContent(): ReactElement {
   const dispatch = useDispatch();
@@ -21,12 +22,13 @@ function ProfileContent(): ReactElement {
 
   // TODO need to add information about user, take correct info
   //  about current logged in user
-  const authUserInfo = useSelector((selectAuthUserInfo));
+  const authUserInfo = useSelector(selectAuthUserInfo);
 
   const { t, i18n } = useTranslation();
 
   const [isDropdownOpend, setDropdownOpend] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const [modalActiveNew, setModalActiveNew] = useState(false);
 
   const toggleDropDown = (): void => {
     setDropdownOpend(!isDropdownOpend);
@@ -46,24 +48,49 @@ function ProfileContent(): ReactElement {
         </div>
         <IconButton onClick={toggleDropDown}>
           {console.log(authUserInfo.avatar)}
-          {authUserInfo.avatar === '' ?
-            <div className={styles.ProfileContent__userAvatar}>{authUserInfo.userName[0]}</div> :
-            <img className={styles.ProfileContent__userAvatar} src={`${authUserInfo.avatar}`} alt='avatar' />}
-          {isDropdownOpend ?
-            (<div className={styles.ProfileContent__dropDownMenu}>
-              <button type='button' onClick={() => {
-                dispatch(setModalActive(true));
-                console.log('new user info');
-              } // берет authUser имя и пароль по ним ищет юзра и оновляет
-              }
-                      className={styles.ProfileContent__buttons}>
+          {authUserInfo.avatar === '' ? (
+            <div className={styles.ProfileContent__userAvatar}>{authUserInfo.userName[0]}</div>
+          ) : (
+            <img
+              className={styles.ProfileContent__userAvatar}
+              src={`${authUserInfo.avatar}`}
+              alt="avatar"
+            />
+          )}
+          {isDropdownOpend ? (
+            <div className={styles.ProfileContent__dropDownMenu}>
+              <button
+                type="button"
+                onClick={() => {
+                  dispatch(setModalActiveNew(true));
+                }}
+                className={styles.ProfileContent__buttons}
+              >
+                Upload avatar
+              </button>
+              <button
+                type="button"
+                onClick={
+                  () => {
+                    dispatch(setModalActive(true));
+                  } // берет authUser имя и пароль по ним ищет юзра и оновляет
+                }
+                className={styles.ProfileContent__buttons}
+              >
                 Edit profile
               </button>
-              <button type='button' onClick={handleSignOut} disabled={isSignOutLoading}
-                      className={styles.ProfileContent__buttons}>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                disabled={isSignOutLoading}
+                className={styles.ProfileContent__buttons}
+              >
                 Sign out
               </button>
-            </div>) : false}
+            </div>
+          ) : (
+            false
+          )}
         </IconButton>
       </div>
       <div className={styles.ProfileContent__languagesWrapper}>
@@ -78,10 +105,8 @@ function ProfileContent(): ReactElement {
           className={styles.ProfileContent__languagesListDropdownIcon}
         />
       </div>
-      <ModalUserProfile
-        modalActive={modalActive}
-        setModalActive={setModalActive}
-      />
+      <ModalUserProfile modalActive={modalActive} setModalActive={setModalActive} />
+      <ModalUserAvatar modalActiveNew={modalActiveNew} setModalActiveNew={setModalActiveNew} />
     </div>
   );
 }

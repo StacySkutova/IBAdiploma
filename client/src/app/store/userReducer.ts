@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 import { axiosInstance } from 'shared/api/http-common';
-import axios from 'axios';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -47,6 +46,7 @@ export const getUserDataAsync = function ({ userName, email, password }) {
     try {
       await axiosInstance.post('user-data-update', payloadData);
       dispatch(setUserData({ userName, email, password }));
+      dispatch(setIsUserDataSuccess(true));
       toast.success('User data updated');
     } catch (err) {
       toast.error('User data failed');
@@ -58,7 +58,7 @@ export const getUserDataAsync = function ({ userName, email, password }) {
 export const getUserDataAsyncFromBackend = function (userName) {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:5000/user-find/${userName}`);
+      const response = await axiosInstance.get(`user-find/${userName}`);
       dispatch(
         setUserData({
           userName: response.data.userName,
@@ -128,11 +128,10 @@ export const getUserDataAsyncFromBackend = function (userName) {
 export const getAllUserDataAsyncFromBackend = function () {
   return async (dispatch) => {
     try {
-      const response = await axios.get('http://localhost:5000/user-find');
+      const response = await axiosInstance.get('user-find');
       console.log(response);
       dispatch(setUsersList(response.data));
       console.log(response.data);
-      toast.success('User data success');
     } catch (err) {
       toast.error('User data failed');
     }
@@ -143,11 +142,10 @@ export const deleteUserOnBackend = function (userName) {
   return async () => {
     try {
       console.log(userName);
-      const response = await axios.delete(`http://localhost:5000/user-delete/${userName}`);
+      const response = await axiosInstance.delete(`user-delete/${userName}`);
       console.log(response);
-      toast.success('User data success');
     } catch (err) {
-      toast.error('User data failed');
+      toast.error('Failed to delete the user');
     }
   };
 };

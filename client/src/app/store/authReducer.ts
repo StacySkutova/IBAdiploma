@@ -94,7 +94,7 @@ export const {
   setResetPasswordFormError,
 } = authSlice.actions;
 
-export const authByBackend = function({ userName, password }) {
+export const authByBackend = function ({ userName, password }) {
   return async (dispatch) => {
     dispatch(setIsSignInFormLoading(true));
     const payloadData = { userName, password };
@@ -105,13 +105,15 @@ export const authByBackend = function({ userName, password }) {
             'accept-language': 'ru',
           },
         });
-        dispatch(setAuthUserInfo({
-          userName,
-          password,
-          email: responseRU.data.email,
-          avatar: responseRU.data.avatar,
-          role: responseRU.data.role,
-        }));
+        dispatch(
+          setAuthUserInfo({
+            userName,
+            password,
+            email: responseRU.data.email,
+            avatar: responseRU.data.avatar,
+            role: responseRU.data.role,
+          })
+        );
       }
       if (document.cookie.slice(8) === 'us') {
         const responseUS = await axiosInstance.post('sign-in', payloadData, {
@@ -119,13 +121,15 @@ export const authByBackend = function({ userName, password }) {
             'accept-language': 'us',
           },
         });
-        dispatch(setAuthUserInfo({
-          userName,
-          password,
-          email: responseUS.data.email,
-          avatar: responseUS.data.avatar,
-          role: responseUS.data.role,
-        }));
+        dispatch(
+          setAuthUserInfo({
+            userName,
+            password,
+            email: responseUS.data.email,
+            avatar: responseUS.data.avatar,
+            role: responseUS.data.role,
+          })
+        );
       }
       dispatch(setIsAuthenticated(true));
     } catch (err: any) {
@@ -135,7 +139,7 @@ export const authByBackend = function({ userName, password }) {
   };
 };
 
-export const regByBackend = function({ userName, email, password, confirmPassword }) {
+export const regByBackend = function ({ userName, email, password, confirmPassword }) {
   return async (dispatch) => {
     dispatch(setIsSignUpFormLoading(true));
     const payloadData = { userName, email, password, confirmPassword };
@@ -148,22 +152,23 @@ export const regByBackend = function({ userName, email, password, confirmPasswor
         });
       }
       if (document.cookie.slice(8) === 'us') {
-        await axiosInstance.post(
-          'sign-up', payloadData, {
-            headers: {
-              'accept-language': 'us',
-            },
-          });
+        await axiosInstance.post('sign-up', payloadData, {
+          headers: {
+            'accept-language': 'us',
+          },
+        });
       }
       dispatch(setIsSignUpSuccess(true));
+      toast.success('Good');
     } catch (err: any) {
       dispatch(setSignUpFormError(err.response.data.message));
+      toast.error('Add failed');
     }
     dispatch(setIsSignUpFormLoading(false));
   };
 };
 
-export const signOutByBackend = function() {
+export const signOutByBackend = function () {
   return async (dispatch) => {
     dispatch(setIsSignOutLoading(true));
     try {
@@ -176,7 +181,7 @@ export const signOutByBackend = function() {
   };
 };
 
-export const forgotPasswordByBackend = function(email) {
+export const forgotPasswordByBackend = function (email) {
   return async (dispatch) => {
     dispatch(setIsForgotPasswordFormLoading(true));
     const payloadData = email;
@@ -192,13 +197,15 @@ export const forgotPasswordByBackend = function(email) {
       await axiosInstance.post('forgot', payloadData, configAcceptLanguageHeader);
       dispatch(setIsForgotPasswordSuccess(true));
     } catch (err) {
-      toast.error('Кажется, что не существует пользователя с указанным ранее элекронным адресом. Пожалйста, проверьте правильность электронного адреса и/или обратитесь к администратору.');
+      toast.error(
+        'Кажется, что не существует пользователя с указанным ранее элекронным адресом. Пожалйста, проверьте правильность электронного адреса и/или обратитесь к администратору.'
+      );
     }
     dispatch(setIsForgotPasswordFormLoading(false));
   };
 };
 
-export const resetPasswordByBackend = function({ email, newPassword, confirmPassword }) {
+export const resetPasswordByBackend = function ({ email, newPassword, confirmPassword }) {
   return async (dispatch) => {
     dispatch(setIsResetPasswordFormLoading(true));
     const payloadData = { email, newPassword, confirmPassword };
@@ -214,7 +221,7 @@ export const resetPasswordByBackend = function({ email, newPassword, confirmPass
       await axiosInstance.post('reset', payloadData, configAcceptLanguageHeader);
       dispatch(setIsResetPasswordSuccess(true));
     } catch (err) {
-      toast.error('Пароли не вовпадают.');
+      toast.error('Пароли не cовпадают.');
     }
     dispatch(setIsResetPasswordFormLoading(false));
   };
@@ -234,11 +241,13 @@ export const selectIsSignUpFormLoading = (state): boolean => state.auth.isSignUp
 export const selectIsSignUpSuccess = (state): boolean => state.auth.isSignUpSuccess;
 export const selectSignUpFormError = (state): any => state.auth.signUpFormError;
 
-export const selectIsForgotPasswordFormLoading = (state): boolean => state.auth.isForgotPasswordFormLoading;
+export const selectIsForgotPasswordFormLoading = (state): boolean =>
+  state.auth.isForgotPasswordFormLoading;
 export const selectIsForgotPasswordSuccess = (state): boolean => state.auth.isForgotPasswordSuccess;
 export const selectForgotPasswordFormError = (state): any => state.auth.forgotPasswordFormError;
 
-export const selectIsResetPasswordFormLoading = (state): boolean => state.auth.isResetPasswordFormLoading;
+export const selectIsResetPasswordFormLoading = (state): boolean =>
+  state.auth.isResetPasswordFormLoading;
 export const selectIsResetPasswordSuccess = (state): boolean => state.auth.isResetPasswordSuccess;
 export const selectResetPasswordFormError = (state): any => state.auth.resetPasswordFormError;
 

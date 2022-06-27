@@ -8,18 +8,18 @@ const router = express.Router();
 
 router.post(
   "/sign-up",
-  // [
-  //   check('userName', 'Username field can not be empty').notEmpty(),
-  //   check('email', 'Email field can not be empty').notEmpty().isEmail(),
-  //   check(
-  //     'password',
-  //     'Password field should be at least 6 characters and not more than 10',
-  //   ).isLength({ min: 6, max: 10 }),
-  //   check(
-  //     'confirmPassword',
-  //     'Password field should be at least 6 characters and not more than 10',
-  //   ).isLength({ min: 6, max: 10 }),
-  // ],
+  [
+    check("userName", "Username field can not be empty").notEmpty(),
+    check("email", "Email field can not be empty").notEmpty().isEmail(),
+    check(
+      "password",
+      "Password field should be at least 6 characters and not more than 10"
+    ).isLength({ min: 6, max: 10 }),
+    check(
+      "confirmPassword",
+      "Password field should be at least 6 characters and not more than 10"
+    ).isLength({ min: 6, max: 10 }),
+  ],
   controller.signup
 );
 router.post(

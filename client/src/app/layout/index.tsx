@@ -1,7 +1,7 @@
 import { ReactNode, ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectIsAuthenticated } from '../store/authReducer';
+import { selectIsAuthenticated } from 'app/store/authReducer';
 import Header from './_ui/Header';
 import Footer from './_ui/Footer';
 

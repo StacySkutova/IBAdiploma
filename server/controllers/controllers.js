@@ -183,19 +183,31 @@ class controllers {
         });
       }
       const { userName, email, password } = req.body;
-      const user = await User.findOne({ userName, email });
+      const user = await User.findOne({ userName });
       if (!user) {
         return res
           .status(400)
           .json({ message: "Such user has been not found" });
       }
-      if (password !== null && !bcrypt.compareSync(password, user.password)) {
+      if (email !== "") {
+        await User.findOneAndUpdate(
+          { userName },
+          { email: email },
+          {
+            new: true,
+          }
+        );
+        return res
+          .status(200)
+          .json({ message: "Email was reset successfully" });
+      }
+      if (password !== "") {
         const hashNewPassword = bcrypt.hashSync(
           password,
           HASH_COMPLEXITY_NUMBER
         );
         await User.findOneAndUpdate(
-          { email },
+          { userName },
           { password: hashNewPassword },
           {
             new: true,

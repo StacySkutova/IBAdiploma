@@ -26,6 +26,6 @@
   "workout_plans": "Планы тренировок",
   "meal_plans": "Планы питания",
   "questionnaire": "Подобрать план",
-  "active_users_list": "Список активных пользователей",
-  "existent_plans_list": "Список программ-планов тренировок/питания"
+  "active_users_list": "Список пользователей",
+  "existent_plans_list": "Список программ-планов"
 }

@@ -166,29 +166,6 @@
   color: #1a1a1a;
 }
 
-.ModalUserProfile__avatar,
-.ModalUserProfile__avatarUpload {
-  width: rem(70px);
-  height: rem(70px);
-  margin-right: rem(20px);
-  padding: rem(10px);
-  border-radius: 50%;
-  background-color: white;
-  text-align: center;
-  font-family: $main-font;
-  font-size: rem(40px);
-  color: black;
-}
-
-.ModalUserProfile__avatarUpload {
-  padding: 0;
-}
-
-.ModalUserProfile__avatarBlock {
-  display: flex;
-  margin-bottom: rem(20px);
-}
-
 .ModalUserProfile__avatarInputsBlock {
   display: flex;
   flex-direction: column;

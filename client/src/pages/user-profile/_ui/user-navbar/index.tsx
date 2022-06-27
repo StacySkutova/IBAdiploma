@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getUserDataAsyncFromBackend } from 'app/store/userReducer';
-import { HomePageIconSVG, WorkoutPlansIconSVG, MealPLansIconSVG } from 'shared/svgs';
+import { HomePageIconSVG, WorkoutPlansIconSVG, MealPlansIconSVG } from 'shared/svgs';
 
 import styles from './styles.module.scss';
 import { selectAuthUserInfo } from '../../../../app/store/authReducer';
@@ -24,22 +24,26 @@ export default function UserNavbar(): ReactElement {
   return (
     <div className={styles.Navbar__wrapper}>
       <div className={styles.Navbar__container}>
-        <NavLink to='home-page' className={determineIsActiveClassName}>
-          <HomePageIconSVG fill='currentcolor' />
+        <NavLink to="home-page" className={determineIsActiveClassName}>
+          <HomePageIconSVG fill="currentcolor" />
           <span className={styles.Navbar__linkText}>{t('home_page')}</span>
         </NavLink>
-        <NavLink to='workout-plans' className={determineIsActiveClassName} onClick={() => {
-          setUserName(authUserName);
-          dispatch(getUserDataAsyncFromBackend(userName));
-        }}>
-          <WorkoutPlansIconSVG fill='currentcolor' />
+        <NavLink
+          to="workout-plans"
+          className={determineIsActiveClassName}
+          onClick={() => {
+            setUserName(authUserName);
+            dispatch(getUserDataAsyncFromBackend(userName));
+          }}
+        >
+          <WorkoutPlansIconSVG fill="currentcolor" />
           <span className={styles.Navbar__linkText}>{t('workout_plans')}</span>
         </NavLink>
-        <NavLink to='meal-plans' className={determineIsActiveClassName}>
-          <MealPLansIconSVG fill='currentcolor' />
+        <NavLink to="meal-plans" className={determineIsActiveClassName}>
+          <MealPlansIconSVG fill="currentcolor" />
           <span className={styles.Navbar__linkText}>{t('meal_plans')}</span>
         </NavLink>
-        <NavLink to='questionnaire' className={styles.Navbar__questionnaireButton}>
+        <NavLink to="questionnaire" className={styles.Navbar__questionnaireButton}>
           {t('questionnaire')}
         </NavLink>
       </div>

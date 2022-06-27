@@ -19,40 +19,51 @@ export default function UsersList(): ReactElement {
 
   const [modalUpdateUserActive, setModalUpdateUserActive] = useState(false);
   const [modalAddUserActive, setModalAddUserActive] = useState(false);
+  const [data, setData] = useState(null);
 
   // const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getAllUserDataAsyncFromBackend());
-  }, []);
+  }, [data]);
 
   return (
     <div className={styles.UsersList__wrapper}>
+      <div className={styles.UsersList__tableHeader}>
+        <div className={styles.UsersList__tableHeaderName}>Имя</div>
+        <div className={styles.UsersList__tableHeaderName}>Электронная почта</div>
+        <div className={styles.UsersList__tableHeaderName}>Роль</div>
+      </div>
       {usersList.map((user) => (
         <div key={user.userName} className={styles.UsersList__userRow}>
-          <li className={styles.UsersList__userColumn}>{user.userName}</li>
-          <div className={styles.UsersList__userColumn}>{user.email}</div>
-          <div className={styles.UsersList__userColumn}>{user.role}</div>
-          <div className={styles.UsersList__userButtonsBlock}>
-            <button
-              className={styles.UsersList__buttonUpdate}
-              type="button"
-              onClick={() => {
-                dispatch(setModalUpdateUserActive(true));
-              }}
-            >
-              Обновить
-            </button>
-            <button
-              className={styles.UsersList__buttonDelete}
-              type="button"
-              onClick={() => {
-                dispatch(deleteUserOnBackend('Stacy'));
-              }}
-            >
-              Удалить
-            </button>
-          </div>
+          {user.role !== 'admin' && (
+            <>
+              <li className={styles.UsersList__userColumn}>{user.userName}</li>
+              <div className={styles.UsersList__userColumn}>{user.email}</div>
+              <div className={styles.UsersList__userColumn}>{user.role}</div>
+              <div className={styles.UsersList__userButtonsBlock}>
+                <button
+                  className={styles.UsersList__buttonUpdate}
+                  type="button"
+                  onClick={() => {
+                    dispatch(setModalUpdateUserActive(true));
+                  }}
+                >
+                  Обновить
+                </button>
+                <button
+                  className={styles.UsersList__buttonDelete}
+                  type="button"
+                  onClick={() => {
+                    dispatch(deleteUserOnBackend(user.userName));
+                    dispatch(setData(usersList));
+                  }}
+                >
+                  Удалить
+                </button>
+              </div>
+            </>
+          )}
         </div>
       ))}
       <button
@@ -67,10 +78,14 @@ export default function UsersList(): ReactElement {
       <ModalUpdateUserProfile
         modalActive={modalUpdateUserActive}
         setModalActive={setModalUpdateUserActive}
+        setData={setData}
+        usersList={usersList}
       />
       <ModalAddUserProfile
         modalActive={modalAddUserActive}
         setModalActive={setModalAddUserActive}
+        setData={setData}
+        usersList={usersList}
       />
     </div>
   );

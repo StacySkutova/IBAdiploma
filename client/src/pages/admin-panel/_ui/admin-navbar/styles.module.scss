@@ -1,5 +1,5 @@
 .AdminNavbar__wrapper {
-  max-width: 20%;
+  max-width: 22%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
 
 .AdminNavbar__container {
   position: fixed;
-  width: 18%;
+  width: 20%;
 
   @media (max-width: $breakpoint-md) {
     align-items: center;
@@ -20,7 +20,7 @@
 
 .AdminNavbar__linkItem {
   color: #d8d8d8;
-  height: rem(48px);
+  height: rem(80px);
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
